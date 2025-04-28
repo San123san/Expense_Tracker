@@ -27,7 +27,7 @@ function SignUp() {
     try {
       setLoading(true);
 
-      const response = await axios.post("/api/v1/users/register", formData);
+      const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/register", formData);
       const { message } = response.data;
 
       toast.success(
