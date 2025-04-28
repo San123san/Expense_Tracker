@@ -12,6 +12,7 @@ const Page1 = () => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
+        withCredentials: true,
       });
 
       if (response.status === 200) {
