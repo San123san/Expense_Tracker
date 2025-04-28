@@ -94,9 +94,23 @@ const Expenses = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
+      console.log(fetchExpenses());
       fetchExpenses();
       handleCloseModal();
     } catch (err) {
+      if (axios.isAxiosError(err)) {
+        // Axios specific error (request was made, but server responded with an error)
+        console.error('Axios Error:', err.response?.data?.message || err.message);
+        alert(`Error: ${err.response?.data?.message || err.message}`);
+      } else if (err instanceof Error) {
+        // General JS error (network errors, unknown issues)
+        console.error('General Error:', err.message);
+        alert(`Error: ${err.message}`);
+      } else {
+        // Unexpected errors that don't fit the above categories
+        console.error('Unexpected Error:', err);
+        alert('An unexpected error occurred.');
+      }
       console.error("Error:", err.response?.data?.message || err.message);
     }
   };
