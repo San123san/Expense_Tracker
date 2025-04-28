@@ -34,7 +34,7 @@ const Expenses = () => {
 
   const fetchExpenses = async () => {
     try {
-      const res = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/getExpenses", {}, {
+      const res = await axios.post("/api/v1/expenses/getExpenses", {}, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true
       });
@@ -97,17 +97,17 @@ const Expenses = () => {
 
     try {
       if (modalMode === "add") {
-        await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/createExpense", formData, {
+        await axios.post("/api/v1/expenses/createExpense", formData, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
       } else if (modalMode === "edit") {
-        await axios.post(`https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/updateExpense/${currentExpense._id}`, formData, {
+        await axios.post(`/api/v1/expenses/updateExpense/${currentExpense._id}`, formData, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
       } else if (modalMode === "delete") {
-        await axios.post(`https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/deleteExpense/${currentExpense._id}`, {}, {
+        await axios.post(`/api/v1/expenses/deleteExpense/${currentExpense._id}`, {}, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });

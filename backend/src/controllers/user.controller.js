@@ -98,15 +98,9 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const loggedInUser = await registration.findById(user._id).select("-password -refreshToken")
 
-    // const options = {
-    //     httpOnly: true,
-    //     secure: true
-    // }
-
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",  // Secure cookies in production
-        sameSite: 'None', // Ensure cross-origin cookies work
+        secure: true
     }
 
     return res

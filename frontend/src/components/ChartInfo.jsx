@@ -15,7 +15,7 @@ const ChartInfo = () => {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const res = await axios.post('https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/getExpenses', {}, {
+        const res = await axios.post('/api/v1/expenses/getExpenses', {}, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExpenses(res.data.data || []);

@@ -8,7 +8,7 @@ const Page1 = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/logout", {}, {
+      const response = await axios.post("/api/v1/users/logout", {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
