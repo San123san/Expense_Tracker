@@ -30,11 +30,12 @@ function SignIn() {
       const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/login", formData, { withCredentials: true });
       const { message } = response.data;
 
-      const { accessToken, refreshToken } = response.data.data;
+      if (response.status === 200) {
+        const { accessToken, refreshToken } = response.data.data;
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        console.log(accessToken);
+      }
 
       toast.success(message || "Signed in successfully!");
 
