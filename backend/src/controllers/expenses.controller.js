@@ -19,6 +19,7 @@ const createExpense = asyncHandler(async (req, res) => {
     description,
     date,
   });
+  console.log(expense);
 
   res.status(201).json(new ApiResponse(201, expense, "Expense created successfully"));
 });
