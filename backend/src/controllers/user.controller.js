@@ -105,11 +105,10 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true,
-        sameSite: 'none', 
-        secure: true
+        secure: process.env.NODE_ENV === "production",  // Secure cookies in production
+        sameSite: 'None', // Ensure cross-origin cookies work
     }
-    
+
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
