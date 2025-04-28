@@ -29,11 +29,10 @@ function SignIn() {
 
       const response = await axios.post("/api/v1/users/login", formData, { withCredentials: true });
       const { message } = response.data;
-      console.log(response.data);
-      console.log(response.data.data);
+      console.log(message);
 
       if (response.status === 200) {
-        const { accessToken, refreshToken } = response.data;
+        const { accessToken, refreshToken } = response.data.data;
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
