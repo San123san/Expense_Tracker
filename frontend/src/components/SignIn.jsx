@@ -30,6 +30,8 @@ function SignIn() {
       const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/login", {formData}, { withCredentials: true });
       const { message } = response.data;
       console.log(message);
+      console.log(response.data);
+      console.log(response.data.data);
 
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data.data;
