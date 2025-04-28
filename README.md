@@ -140,7 +140,7 @@ This document outlines the user authentication flow (sign-up and sign-in) and pr
 └── tailwind.config.js        # Configuration file for the Tailwind CSS framework, defining styling rules and customizations
 ```
 
-``bash
+```bash
 /backend
 │
 ├── /controllers             # Controllers for handling routes (UserController, etc.)
