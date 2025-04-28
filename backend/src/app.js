@@ -6,9 +6,7 @@ const app = express()
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }))
 
 app.use(express.json({limit: "16kb"}))   //data take when fill form in the format of json

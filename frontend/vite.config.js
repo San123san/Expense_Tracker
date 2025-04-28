@@ -6,8 +6,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server:{
     proxy:{
-      '/api/v1/users': 'https://expense-tracker-1-rke4.onrender.com',
-      '/api/v1/expenses': 'https://expense-tracker-1-rke4.onrender.com',
+      // '/api/v1/users': 'http://localhost:8000',
+      // '/api/v1/expenses': 'http://localhost:8000',
+      
+      // '/api/v1/users': 'https://expense-tracker-1-rke4.onrender.com',
+      // '/api/v1/expenses': 'https://expense-tracker-1-rke4.onrender.com',
     },
   },
   plugins: [react(), tailwindcss(),],

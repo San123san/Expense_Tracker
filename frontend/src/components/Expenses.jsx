@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const categoryOptions = [
   "Food",
@@ -80,6 +82,18 @@ const Expenses = () => {
   };
 
   const handleSubmit = async () => {
+    // Validation: check if all required fields are filled
+    if (!formData.amount || !formData.category || !formData.description || !formData.date) {
+      toast.error("Please fill all the fields including category, amount, description, and date!");
+      return;
+    }
+    
+    // If the category is "Other" and the customCategory is empty, show error
+    if (formData.category === "Other" && !formData.customCategory) {
+      toast.error("Please fill the custom category!");
+      return;
+    }
+
     try {
       if (modalMode === "add") {
         await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/expenses/createExpense", formData, {
@@ -94,23 +108,9 @@ const Expenses = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
-      console.log(fetchExpenses());
       fetchExpenses();
       handleCloseModal();
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        // Axios specific error (request was made, but server responded with an error)
-        console.error('Axios Error:', err.response?.data?.message || err.message);
-        alert(`Error: ${err.response?.data?.message || err.message}`);
-      } else if (err instanceof Error) {
-        // General JS error (network errors, unknown issues)
-        console.error('General Error:', err.message);
-        alert(`Error: ${err.message}`);
-      } else {
-        // Unexpected errors that don't fit the above categories
-        console.error('Unexpected Error:', err);
-        alert('An unexpected error occurred.');
-      }
       console.error("Error:", err.response?.data?.message || err.message);
     }
   };
@@ -281,6 +281,9 @@ const Expenses = () => {
           </div>
         </div>
       )}
+
+      {/* Toast Container */}
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 };
