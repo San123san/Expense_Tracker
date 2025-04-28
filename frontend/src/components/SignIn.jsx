@@ -28,21 +28,18 @@ function SignIn() {
       setLoading(true);
 
       const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/login", formData, { withCredentials: true });
-      const { message } = response.data;
-      console.log(message);
 
       if (response.status === 200) {
         const { accessToken, refreshToken } = response.data.data;
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-      }
-
-      toast.success(message || "Signed in successfully!");
+        toast.success("Signed in successfully!");
 
       setTimeout(() => {
         navigate("/home/Page1");
       }, 2000);
+      }
     } catch (error) {
       console.error("Login error:", error);
       const errorMsg = error.response?.data?.message || "An error occurred. Please try again.";
