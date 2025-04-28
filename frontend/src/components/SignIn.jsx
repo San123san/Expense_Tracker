@@ -34,6 +34,7 @@ function SignIn() {
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+        console.log(accessToken);
 
       toast.success(message || "Signed in successfully!");
 
@@ -42,6 +43,7 @@ function SignIn() {
       }, 2000);
     } catch (error) {
       const errorMsg = error.response?.data?.message || "An error occurred. Please try again.";
+      console.log(errorMsg);
       toast.error(errorMsg);
     } finally {
       setLoading(false);
