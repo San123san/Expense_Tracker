@@ -35,8 +35,6 @@ function SignIn() {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-
-
       toast.success(message || "Signed in successfully!");
 
       setTimeout(() => {
