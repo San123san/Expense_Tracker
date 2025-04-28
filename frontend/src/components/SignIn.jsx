@@ -27,7 +27,7 @@ function SignIn() {
     try {
       setLoading(true);
 
-      const response = await axios.post("https://expense-tracker-1-rke4.onrender.com/api/v1/users/login", formData, { withCredentials: true });
+      const response = await axios.post("/api/v1/users/login", formData, { withCredentials: true });
       const { message } = response.data;
 
       if (response.status === 200) {
@@ -43,6 +43,7 @@ function SignIn() {
         navigate("/home/Page1");
       }, 2000);
     } catch (error) {
+      console.error("Login error:", error);
       const errorMsg = error.response?.data?.message || "An error occurred. Please try again.";
       console.log(errorMsg);
       toast.error(errorMsg);
